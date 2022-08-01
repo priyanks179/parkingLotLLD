@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.database.InMemoryDB;
 import com.exceptions.BaseException;
-import com.models.SlotEntity;
+import com.models.ParkingSlotEntity;
 
 public class VehicleRepoImpl implements VehicleRepoI{
 
@@ -18,9 +18,9 @@ public class VehicleRepoImpl implements VehicleRepoI{
 	@Override
 	public List<String> fetchVehicleRegNumsOfDriverOfGivenAge(int age) throws BaseException {
 		if(age <=0) throw new BaseException("Age is invalid");
-		List<SlotEntity> data = memDb.fetchDataForAge(age);
+		List<ParkingSlotEntity> data = memDb.fetchDataForAge(age);
 		List<String> res = new ArrayList<>();
-		for(SlotEntity se : data) {
+		for(ParkingSlotEntity se : data) {
 			res.add(se.getVehicleRegNum());
 		}
 		return res;

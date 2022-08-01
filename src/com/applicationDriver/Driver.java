@@ -24,11 +24,10 @@ public class Driver {
 	
 	public static void main(String[] args) throws IOException {
 		File directory = new File("");
-		String absPath = directory.getAbsolutePath();
-		String fileName = "input.txt";
-		absPath = absPath.substring(0,absPath.lastIndexOf("\\"));
-		String path = absPath + "\\"+fileName;
-		readAndProcessFile(path);
+	    String absPath = directory.getAbsolutePath();
+	    String fileName = "input.txt";
+	    String path = absPath + "/" + fileName;
+	    readAndProcessFile(path);
     }
 	
 	public static void readAndProcessFile(String path) {

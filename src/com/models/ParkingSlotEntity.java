@@ -2,19 +2,19 @@ package com.models;
 
 
 //Db table to entity mapping
-public class SlotEntity {
+public class ParkingSlotEntity {
 	
 	int slotId;
 	String vehicleRegNum;
 	int age;
 	
-	public SlotEntity(int pSlotId, String pVRN, int pAge ){
+	public ParkingSlotEntity(int pSlotId, String pVRN, int pAge ){
 		slotId = pSlotId;
 		vehicleRegNum = pVRN;
 		age = pAge;
 	}
 	
-	public SlotEntity(SlotEntity pSlotEntity){
+	public ParkingSlotEntity(ParkingSlotEntity pSlotEntity){
 		slotId = pSlotEntity.getSlotId();
 		vehicleRegNum = pSlotEntity.getVehicleRegNum();
 		age = pSlotEntity.getAge();

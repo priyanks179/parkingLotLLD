@@ -1,6 +1,6 @@
 package com.models;
 
-public class SlotVO {
+public class ParkingSlotVO {
 	int slotId;
 	VehicleVO vehicle;
 	Boolean isOccupied;
@@ -8,7 +8,7 @@ public class SlotVO {
 		return slotId;
 	}
 	
-	public SlotVO(int pSlotId) {
+	public ParkingSlotVO(int pSlotId) {
 		slotId = pSlotId;
 		isOccupied = false;
 	}

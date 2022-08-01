@@ -3,7 +3,7 @@ package com.repository;
 import java.util.List;
 
 import com.exceptions.BaseException;
-import com.models.SlotVO;
+import com.models.ParkingSlotVO;
 
 public interface SlotRepoI {
 
@@ -24,6 +24,6 @@ public interface SlotRepoI {
 	/*
 	 * After allocating a slot to vehicle will save the data to db
 	 */
-	public void insertSlotInfo(SlotVO slotVO) throws BaseException;
+	public void insertSlotInfo(ParkingSlotVO slotVO) throws BaseException;
 	
 }

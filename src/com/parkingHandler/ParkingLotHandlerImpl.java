@@ -5,13 +5,13 @@ import java.util.TreeSet;
 import com.exceptions.BaseException;
 import com.exceptions.SlotNotAvailableException;
 import com.exceptions.SlotNotFilledException;
-import com.models.SlotVO;
+import com.models.ParkingSlotVO;
 import com.models.VehicleVO;
 import com.repository.SlotRepoI;
 
 public class ParkingLotHandlerImpl implements ParkingLotHandlerI{
 
-	SlotVO[] slotArray;
+	ParkingSlotVO[] slotArray;
 	TreeSet<Integer> availableSlots;
 	int parkingLotSize;
 	SlotRepoI slotRepo;
@@ -20,10 +20,10 @@ public class ParkingLotHandlerImpl implements ParkingLotHandlerI{
 	
 	private ParkingLotHandlerImpl(int pParkingLotSize, SlotRepoI pSlotRepo) {
 		parkingLotSize = pParkingLotSize;
-		slotArray = new SlotVO[pParkingLotSize];
+		slotArray = new ParkingSlotVO[pParkingLotSize];
 		availableSlots = new TreeSet<>();
 		for(int ind=0; ind<pParkingLotSize; ind++) {
-			slotArray[ind] = new SlotVO(ind+1);
+			slotArray[ind] = new ParkingSlotVO(ind+1);
 			availableSlots.add(ind+1);
 		}
 		slotRepo = pSlotRepo;
@@ -34,7 +34,7 @@ public class ParkingLotHandlerImpl implements ParkingLotHandlerI{
 		if(availableSlots.size()==0) throw new SlotNotAvailableException("No parking slot is available.");
 		int slotId = availableSlots.iterator().next();
 		availableSlots.remove(slotId);
-		SlotVO slotVO = slotArray[slotId-1];
+		ParkingSlotVO slotVO = slotArray[slotId-1];
 		slotVO.setIsOccupied(true);
 		slotVO.setVehicle(vehicle);
 		slotRepo.insertSlotInfo(slotVO);
@@ -44,7 +44,7 @@ public class ParkingLotHandlerImpl implements ParkingLotHandlerI{
 	@Override
 	public String emptySlot(int slotId) throws SlotNotFilledException, BaseException {
 		if(slotId<1 || slotId>parkingLotSize) throw new BaseException("Invalid slotId is passed.");
-		SlotVO slotVO = slotArray[slotId-1];
+		ParkingSlotVO slotVO = slotArray[slotId-1];
 		if(!slotVO.getIsOccupied()) throw new SlotNotFilledException("Slot is already empty.");
 		slotVO.setIsOccupied(false);
 		availableSlots.add(slotId);

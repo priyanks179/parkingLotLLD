@@ -3,15 +3,15 @@ package com.database;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import com.models.SlotEntity;
+import com.models.ParkingSlotEntity;
 
 /*
  * This will store list of 
  */
 public class InMemoryDB {
 
-	HashMap<Integer, List<SlotEntity>> ageColumnIndexingMap; 
-	HashMap<String, List<SlotEntity>> vehicleRegNumColumnIndexingMap;
+	HashMap<Integer, List<ParkingSlotEntity>> ageColumnIndexingMap; 
+	HashMap<String, List<ParkingSlotEntity>> vehicleRegNumColumnIndexingMap;
 	
 	
 	private static InMemoryDB memDB;
@@ -32,8 +32,8 @@ public class InMemoryDB {
 		return memDB;
 	}
 	
-	public void insertSlotData(SlotEntity slotEntity){
-		List<SlotEntity> lst;
+	public void insertSlotData(ParkingSlotEntity slotEntity){
+		List<ParkingSlotEntity> lst;
 		lst = ageColumnIndexingMap.getOrDefault(slotEntity.getAge(), new ArrayList<>());
 		lst.add(slotEntity);
 		ageColumnIndexingMap.put(slotEntity.getAge(), lst);
@@ -42,9 +42,9 @@ public class InMemoryDB {
 		vehicleRegNumColumnIndexingMap.put(slotEntity.getVehicleRegNum(), lst);
 	}
 	
-	public List<SlotEntity> fetchDataForAge(Integer age){
+	public List<ParkingSlotEntity> fetchDataForAge(Integer age){
 		if(age==null) return null;
-		List<SlotEntity> dataForAge = ageColumnIndexingMap.getOrDefault(age, new ArrayList<>());
+		List<ParkingSlotEntity> dataForAge = ageColumnIndexingMap.getOrDefault(age, new ArrayList<>());
 		return dataForAge;
 	} 
 	
@@ -52,9 +52,9 @@ public class InMemoryDB {
 	 * Fetches data for particular 
 	 * vehicle registration number (vrn)
 	 */
-	public List<SlotEntity> fetchDataForVRN(String vehicleRegNum){
+	public List<ParkingSlotEntity> fetchDataForVRN(String vehicleRegNum){
 		if(vehicleRegNum==null) return null;
-		List<SlotEntity> dataForVrn = vehicleRegNumColumnIndexingMap.getOrDefault(vehicleRegNum, new ArrayList<>());
+		List<ParkingSlotEntity> dataForVrn = vehicleRegNumColumnIndexingMap.getOrDefault(vehicleRegNum, new ArrayList<>());
 		return dataForVrn;
 	}
 }

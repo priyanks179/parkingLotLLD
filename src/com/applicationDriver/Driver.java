@@ -26,8 +26,7 @@ public class Driver {
 		File directory = new File("");
 		String absPath = directory.getAbsolutePath();
 		String fileName = "input.txt";
-		absPath = absPath.substring(0,absPath.lastIndexOf("\\"));
-		String path = absPath + "\\"+fileName;
+		String path = absPath + "/"+fileName;
 		readAndProcessFile(path);
     }
 	
